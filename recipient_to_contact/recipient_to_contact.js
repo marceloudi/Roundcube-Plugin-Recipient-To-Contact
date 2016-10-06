@@ -87,7 +87,7 @@ var recipient_to_contact = {
             // otherwise, use email's part before '@' as contact's name
             $('<td></td>').append(
                 $('<input />').attr('type', 'text').attr('name', '_contacts[' + key + '][_name]').val(
-                    (contact['mailto'] == contact['name'])
+                    (contact['mailto'] == contact['name'] || !contact['name'])
                         ? contact['mailto'].split('@')[0]
                         : contact['name']
                 )
@@ -305,7 +305,8 @@ var recipient_to_contact = {
         });
 
         // pre select all checkboxes by default
-        $('#new-contacts-dialog input:checkbox').click();
+        //$('#new-contacts-dialog input:checkbox').click();
+        $('#new-contacts-dialog input:checkbox').prop("checked","checked");
 
         // re-enable keyboard shortcuts
         if (recipient_to_contact.withShortcuts) {
